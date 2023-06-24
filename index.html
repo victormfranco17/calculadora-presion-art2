@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blood Pressure Calculator</title>
+	<style>
+		/* Aquí va el código CSS */
+        body {
+	font-family: Arial, sans-serif;
+	background-color: #F4F4F4;
+}
+
+h1 {
+	text-align: center;
+	color: #1551B3;
+}
+
+.form {
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #CCC;
+	max-width: 400px;
+	background-color: #FFF;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+input {
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+	box-sizing: border-box;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+}
+
+button {
+	display: block;
+	margin: 20px auto;
+	padding: 10px 20px;
+	background-color: #1551B3;
+	color: #FFF;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0A3C8E;
+}
+
+#resultado {
+	margin-top: 20px;
+	padding: 10px;
+	border-radius: 3px;
+	text-align: center;
+	font-weight: bold;
+	color: #FFF;
+}
+
+.saludable {
+	background-color: #6CC070;
+}
+
+.prehipertension {
+	background-color: #F9A825;
+}
+
+.hipertensionEtapa1 {
+	background-color: #EF6C00;
+}
+
+.hipertensionEtapa2 {
+	background-color: #B71C1C;
+}
+	</style>
+	<script>
+		// Aquí va el código JavaScript
+        function calcular() {
+	let sistolica = document.getElementById("sistolica").value;
+	let diastolica = document.getElementById("diastolica").value;
+	let resultado = document.getElementById("resultado");
+
+	if (sistolica === '' || diastolica === '') {
+		alert("Por favor, ingrese los valores de presión arterial");
+		return;
+	}
+
+	let presion = sistolica + '/' + diastolica;
+
+	if (sistolica < 120 && diastolica < 80) {
+		resultado.textContent = "Su presión arterial es " + presion + " y está en un rango saludable";
+		resultado.classList.add("saludable");
+		resultado.classList.remove("prehipertension", "hipertensionEtapa1", "hipertensionEtapa2");
+	} else if (sistolica >= 120 && sistolica <= 129 && diastolica < 80) {
+		resultado.textContent = "Su presión arterial es " + presion + " y está en el rango de prehipertensión";
+		resultado.classList.add("prehipertension");
+		resultado.classList.remove("saludable", "hipertensionEtapa1", "hipertensionEtapa2");
+	} else if ((sistolica >= 130 && sistolica <= 139) || (diastolica >= 80 && diastolica <= 89)) {
+		resultado.textContent = "Su presión arterial es " + presion + " y está en el rango de hipertensión Etapa 1";
+		resultado.classList.add("hipertensionEtapa1");
+		resultado.classList.remove("saludable", "prehipertension", "hipertensionEtapa2");
+	} else if (sistolica >= 140 || diastolica >= 90) {
+		resultado.textContent = "Su presión arterial es " + presion + " y está en el rango de hipertensión Etapa 2";
+		resultado.classList.add("hipertensionEtapa2");
+		resultado.classList.remove("saludable", "prehipertension", "hipertensionEtapa1");
+	}
+}
+	</script>
+</head>
+<body>
+	<!-- Aquí va el contenido HTML -->
+    <!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora de Presión Arterial</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>Calculadora de Presión Arterial</h1>
+	<div class="form">
+		<label for="sistolica">Presión Sistólica (mmHg):</label>
+		<input type="number" id="sistolica">
+		<label for="diastolica">Presión Diastólica (mmHg):</label>
+		<input type="number" id="diastolica">
+		<button onclick="calcular()">Calcular</button>
+		<div id="resultado"></div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
+</body>
+</html>
